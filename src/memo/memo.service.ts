@@ -13,14 +13,14 @@ export class MemoService {
 
   async createMemo(userDto: IUser, memoDto: CreateMemoDto) {
     const data = await this.prismaService.memo.create({
-      data: memoDto,
+      data: { ...memoDto, userId: userDto.id },
     });
 
     return { data };
   }
 
   async patchMemo(userDto: IUser, memoId: number, memoDto: UpdateMemoDto) {
-    await this.findAllMemoNotDeleted(userDto.userId, memoId);
+    await this.findAllMemoNotDeleted(userDto.id, memoId);
 
     const data = await this.prismaService.memo.update({
       where: {
@@ -33,7 +33,7 @@ export class MemoService {
   }
 
   async deleteMemo(userDto: IUser, memoId: number) {
-    await this.findAllMemoNotDeleted(userDto.userId, memoId);
+    await this.findAllMemoNotDeleted(userDto.id, memoId);
 
     const data = await this.prismaService.memo.update({
       where: {

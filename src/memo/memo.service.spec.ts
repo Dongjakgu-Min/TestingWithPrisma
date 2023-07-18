@@ -57,9 +57,8 @@ describe('MemoService', () => {
   it('Create Memo', async () => {
     const result = await service.createMemo(
       {
-        userId: 1,
+        id: 1,
         username: 'orange',
-        password: 'pineapple',
       },
       {
         title: 'blabla',
@@ -75,9 +74,8 @@ describe('MemoService', () => {
   it('Update Memo Title', async () => {
     const result = await service.patchMemo(
       {
-        userId: 1,
+        id: 1,
         username: 'orange',
-        password: 'pineapple',
       },
       1,
       {
@@ -105,9 +103,8 @@ describe('MemoService', () => {
 
     const result = await service.patchMemo(
       {
-        userId: 1,
+        id: 1,
         username: 'orange',
-        password: 'pineapple',
       },
       1,
       {
@@ -131,9 +128,8 @@ describe('MemoService', () => {
     expect(async () => {
       return service.patchMemo(
         {
-          userId: 1,
+          id: 1,
           username: 'orange',
-          password: 'pineapple',
         },
         2,
         {
@@ -147,9 +143,8 @@ describe('MemoService', () => {
     expect(async () => {
       return service.patchMemo(
         {
-          userId: 2,
+          id: 2,
           username: 'apple',
-          password: 'tuna_pepper',
         },
         1,
         {
@@ -179,9 +174,8 @@ describe('MemoService', () => {
 
     const result = await service.deleteMemo(
       {
-        userId: 1,
+        id: 1,
         username: 'orange',
-        password: 'pineapple',
       },
       1,
     );
@@ -195,9 +189,8 @@ describe('MemoService', () => {
     expect(async () => {
       return service.deleteMemo(
         {
-          userId: 1,
+          id: 1,
           username: 'orange',
-          password: 'pineapple',
         },
         1,
       );
