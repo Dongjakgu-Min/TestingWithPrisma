@@ -32,11 +32,13 @@ export class MemoService {
     return { data };
   }
 
-  async deleteMemo(userDto: IUser, memoId) {
+  async deleteMemo(userDto: IUser, memoId: number) {
     await this.findAllMemoNotDeleted(userDto.userId, memoId);
 
     const data = await this.prismaService.memo.update({
-      where: memoId,
+      where: {
+        id: memoId,
+      },
       data: { deletedAt: new Date() },
     });
 
