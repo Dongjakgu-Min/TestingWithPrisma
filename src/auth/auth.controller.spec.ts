@@ -44,6 +44,7 @@ describe('AuthController', () => {
 
   it('Create Token', async () => {
     const result = await controller.getToken({
+      userId: 1,
       username: 'orange',
       password: 'pineapple',
     });
