@@ -2,6 +2,7 @@ import {
   BadRequestException,
   ConflictException,
   Injectable,
+  NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
@@ -28,6 +29,18 @@ export class UserService {
         password: await bcrypt.hash(userDto.password, 12),
       },
     });
+  }
+
+  async findUser(username: string) {
+    const user = await this.Prisma.user.findFirst({
+      where: {
+        username,
+      },
+    });
+
+    if (!user) throw new NotFoundException();
+
+    return user;
   }
 
   async updateUser(userId: number, userDto: UpdateUserDto) {
