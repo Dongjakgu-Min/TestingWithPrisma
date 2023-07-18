@@ -19,7 +19,7 @@ export class MemoService {
     return { data };
   }
 
-  async updateMemo(userDto: IUser, memoId: number, memoDto: UpdateMemoDto) {
+  async patchMemo(userDto: IUser, memoId: number, memoDto: UpdateMemoDto) {
     await this.findAllMemoNotDeleted(userDto.userId, memoId);
 
     const data = await this.prismaService.memo.update({

@@ -73,7 +73,7 @@ describe('MemoService', () => {
   });
 
   it('Update Memo Title', async () => {
-    const result = await service.updateMemo(
+    const result = await service.patchMemo(
       {
         userId: 1,
         username: 'orange',
@@ -103,7 +103,7 @@ describe('MemoService', () => {
       userId: 1,
     });
 
-    const result = await service.updateMemo(
+    const result = await service.patchMemo(
       {
         userId: 1,
         username: 'orange',
@@ -129,7 +129,7 @@ describe('MemoService', () => {
     prisma.memo.findFirst = jest.fn().mockReturnValueOnce(null);
 
     expect(async () => {
-      return service.updateMemo(
+      return service.patchMemo(
         {
           userId: 1,
           username: 'orange',
@@ -145,7 +145,7 @@ describe('MemoService', () => {
 
   it('Update Memo Error - Unauthorized', () => {
     expect(async () => {
-      return service.updateMemo(
+      return service.patchMemo(
         {
           userId: 2,
           username: 'apple',
